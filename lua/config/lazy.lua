@@ -1,6 +1,4 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -17,24 +15,53 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- オプション読み込み
+require("config.options")
+
+-- Setup lazy.nvim
 require("lazy").setup({
   spec = {
     { import = "plugins" },
+    { import = "plugins.lsp" },
   },
   defaults = {
     lazy = false,
-    version = false,
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "habamax" } },
   checker = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {
-        "gzip",
-        "tarPlugin",
+        "2html_plugin",
         "tohtml",
-        "tutor",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
         "zipPlugin",
+        "tutor",
+        "rplugin",
+        "syntax",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
       },
     },
   },
