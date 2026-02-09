@@ -30,6 +30,16 @@ return {
         ["h"] = "close_node",          -- 親ディレクトリに戻る/閉じる
         ["l"] = "open",                -- 開く
         ["<cr>"] = "open",             -- Enterでも開く
+        ["gy"] = {
+          function(state)
+            local node = state.tree:get_node()
+            local path = node:get_id()
+            local relative_path = vim.fn.fnamemodify(path, ":.")
+            vim.fn.setreg("+", relative_path)
+            vim.notify("Copied: " .. relative_path)
+          end,
+          desc = "Copy relative path",
+        },
       },
     },
   },

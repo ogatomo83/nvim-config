@@ -6,11 +6,14 @@ opt.number = true
 opt.relativenumber = true
 
 -- インデント設定
-opt.expandtab = false   -- Goはタブを使う
-opt.tabstop = 4
-opt.shiftwidth = 4
+opt.expandtab = false -- Goはタブを使う
+opt.tabstop = 2
+opt.shiftwidth = 2
 opt.autoindent = true
 opt.smartindent = true
+
+-- クリップボード連携（yankでシステムクリップボードにコピー）
+opt.clipboard = "unnamedplus"
 
 -- シンタックスハイライト有効化（Treesitterと併用）
 vim.cmd("syntax on")
