@@ -12,7 +12,7 @@ return {
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "gopls" },
+				ensure_installed = { "gopls", "terraformls" },
 			})
 		end,
 	},
@@ -73,6 +73,15 @@ return {
 				capabilities = capabilities,
 			}
 			vim.lsp.enable("gopls")
+
+			-- terraformls設定
+			vim.lsp.config.terraformls = {
+				cmd = { "terraform-ls", "serve" },
+				filetypes = { "terraform", "terraform-vars" },
+				root_markers = { ".terraform", ".git" },
+				capabilities = capabilities,
+			}
+			vim.lsp.enable("terraformls")
 		end,
 	},
 }
