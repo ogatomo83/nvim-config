@@ -52,6 +52,8 @@ return {
     opts = {
       formatters_by_ft = {
         go = { "goimports", "gofmt" },
+        java = { "google-java-format" },
+        kotlin = { "ktlint" },
         terraform = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },
       },
