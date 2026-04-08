@@ -3,7 +3,7 @@ return {
   version = "v0.9.*",  -- 安定版を使用
   config = function()
     require('nvim-treesitter.configs').setup({
-      ensure_installed = { 'go', 'lua', 'typescript', 'javascript', 'json', 'yaml', 'html', 'css', 'bash', 'python', 'markdown', 'scala' },
+      ensure_installed = { 'go', 'lua', 'typescript', 'javascript', 'json', 'yaml', 'html', 'css', 'bash', 'python', 'markdown', 'scala', 'rust', 'toml' },
       highlight = {
         enable = true,
       },

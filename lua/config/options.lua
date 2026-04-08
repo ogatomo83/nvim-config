@@ -15,5 +15,10 @@ opt.smartindent = true
 -- クリップボード連携（yankでシステムクリップボードにコピー）
 opt.clipboard = "unnamedplus"
 
+-- フォント設定（GUI Neovim用）
+opt.guifont = "Hack Nerd Font:h20"
+-- 行間（GUI Neovim用）
+opt.linespace = 8
+
 -- シンタックスハイライト有効化（Treesitterと併用）
 vim.cmd("syntax on")

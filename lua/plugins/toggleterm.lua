@@ -15,12 +15,39 @@ return {
       direction = "float",
       float_opts = {
         border = "curved",
+        width = function()
+          return math.floor(vim.o.columns * 0.85)
+        end,
+        height = function()
+          return math.floor(vim.o.lines * 0.85)
+        end,
+        winblend = 0,
       },
+      -- TUIアプリとの互換性向上
+      auto_scroll = false,
     })
 
-    vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>", { desc = "Toggle terminal" })
-    vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float terminal" })
-    vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Horizontal terminal" })
-    vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", { desc = "Vertical terminal" })
+    -- ターミナルモードで Ctrl+n で Terminal Normal モードに切り替え
+    vim.keymap.set("t", "<C-n>", [[<C-\><C-n>]], { desc = "Terminal normal mode" })
+
+    -- ターミナルモード内での切り替え (Ctrl+j / Ctrl+k)
+    -- <C-j>: Terminal #1 (Claude Code)
+    -- <C-k>: Terminal #2 (Shell)
+    local function switch_term(id)
+      return function()
+        local terms = require("toggleterm.terminal")
+        for _, t in ipairs(terms.get_all()) do
+          if t:is_open() then
+            t:close()
+          end
+        end
+        vim.cmd(id .. "ToggleTerm")
+        vim.schedule(function()
+          vim.cmd("startinsert")
+        end)
+      end
+    end
+    vim.keymap.set("t", "<C-j>", switch_term(1), { desc = "Switch to Claude terminal" })
+    vim.keymap.set("t", "<C-k>", switch_term(2), { desc = "Switch to Shell terminal" })
   end,
 }
