@@ -49,5 +49,17 @@ return {
     end
     vim.keymap.set("t", "<C-j>", switch_term(1), { desc = "Switch to Claude terminal" })
     vim.keymap.set("t", "<C-k>", switch_term(2), { desc = "Switch to Shell terminal" })
+
+    -- ターミナルバッファ内のノーマルモードでも切り替えられるようにする
+    -- (グローバルの <C-j>/<C-k> がウィンドウ移動にマップされていてフロート窓を閉じてしまうため、
+    --  バッファローカルで上書きする)
+    vim.api.nvim_create_autocmd("TermOpen", {
+      pattern = "term://*toggleterm#*",
+      callback = function(args)
+        local opts = { buffer = args.buf }
+        vim.keymap.set("n", "<C-j>", switch_term(1), vim.tbl_extend("force", opts, { desc = "Switch to Claude terminal" }))
+        vim.keymap.set("n", "<C-k>", switch_term(2), vim.tbl_extend("force", opts, { desc = "Switch to Shell terminal" }))
+      end,
+    })
   end,
 }
