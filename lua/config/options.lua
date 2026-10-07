@@ -22,3 +22,11 @@ opt.linespace = 8
 
 -- シンタックスハイライト有効化（Treesitterと併用）
 vim.cmd("syntax on")
+
+-- :terminal / toggleterm のデフォルトシェルを PowerShell にする
+if vim.fn.has("win32") == 1 then
+  opt.shell = "powershell.exe"
+  opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  opt.shellquote = ""
+  opt.shellxquote = ""
+end

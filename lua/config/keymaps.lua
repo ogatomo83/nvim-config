@@ -8,6 +8,9 @@ vim.keymap.set("n", "<C-k>", "<C-w>l")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- *で検索しても元の位置に留まる
+vim.keymap.set("n", "*", "*N", { desc = "Search word without jumping" })
+
 -- ターミナルモードからダブルEscでノーマルモードに戻る
 -- (シングルEscだとClaude Code等のTUIアプリと干渉するため)
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
